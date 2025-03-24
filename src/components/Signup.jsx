@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Eye, EyeOff } from 'lucide-react';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const Signup = () => {
 
   const [errors, setErrors] = useState({});
   const [emailError, setemailError] = useState('');
+  const [type, setType] = useState('password');
+  const [icon, setIcon] = useState(<EyeOff size={22} />);
 
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +26,10 @@ const Signup = () => {
       [name]: value,
     }));
   };
-
+  const handleToggle = () => {
+    setType(type === 'password' ? 'text' : 'password');
+    setIcon(type === 'password' ? <Eye size={22} /> : <EyeOff size={22} />);
+  };
   const validate = () => {
     let newErrors = {};
     if (!formData.firstName.trim()) {
@@ -145,22 +151,30 @@ const Signup = () => {
             )}
           </div>
 
-          <div className='mb-6'>
+          <div className='mb-6 relative'>
             <label
               htmlFor='password'
               className='block text-sm font-medium text-gray-300'
             >
               Password
             </label>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={formData.password}
-              onChange={handlechange}
-              className='mt-2 p-3 w-full bg-gray-700 text-white border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500'
-              placeholder='Enter your password'
-            />
+            <div className='relative'>
+              <input
+                type={type}
+                id='password'
+                name='password'
+                value={formData.password}
+                onChange={handlechange}
+                className='mt-0 p-3 w-full bg-gray-700 text-white border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 pr-10'
+                placeholder='Enter your password'
+              />
+              <span
+                className='absolute right-3 top-3 cursor-pointer text-gray-400 hover:text-white'
+                onClick={handleToggle}
+              >
+                {icon}
+              </span>
+            </div>
             {errors.password && (
               <p className='text-red-500 text-sm'>{errors.password}</p>
             )}

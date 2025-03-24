@@ -126,8 +126,8 @@ const Login = () => {
                 id='password'
                 name='password'
                 value={formData.password}
-                onChange={handleChange}
-                className='mt-2 p-3 w-full bg-gray-700 text-white border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 pr-10'
+                onChange={handlechange}
+                className='mt-0 p-3 w-full bg-gray-700 text-white border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 pr-10'
                 placeholder='Enter your password'
               />
               <span
