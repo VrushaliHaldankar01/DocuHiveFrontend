@@ -28,7 +28,7 @@ const Login = () => {
     setIcon(type === 'password' ? <Eye size={22} /> : <EyeOff size={22} />);
   };
 
-  const handleChange = (e) => {
+  const handlechange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -104,7 +104,7 @@ const Login = () => {
               id='email'
               name='email'
               value={formData.email}
-              onChange={handleChange}
+              onChange={handlechange}
               className='mt-2 p-3 w-full bg-gray-700 text-white border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500'
               placeholder='Enter your email'
             />
