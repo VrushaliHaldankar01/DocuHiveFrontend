@@ -67,6 +67,23 @@ const Login = () => {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   try {
+  //     const response = await axios.post(
+  //       'http://localhost:3000/api/v1/auth/login',
+  //       formData
+  //     );
+  //     console.log('Login successful:', response.data);
+  //     navigate('/dashboard');
+  //   } catch (error) {
+  //     toast.error(error.response?.data?.error || 'Login failed', {
+  //       position: 'top-right',
+  //     });
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -76,6 +93,11 @@ const Login = () => {
         'http://localhost:3000/api/v1/auth/login',
         formData
       );
+
+      // Store user data and token
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+
       console.log('Login successful:', response.data);
       navigate('/dashboard');
     } catch (error) {
@@ -84,7 +106,6 @@ const Login = () => {
       });
     }
   };
-
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-900'>
       <div className='bg-gray-800 p-8 rounded-xl shadow-xl w-96'>
